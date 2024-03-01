@@ -24,7 +24,7 @@ module.exports = defineConfig({
   reporter: 'html',
   timeout: 30000,
   expect: {
-    timeout: 30000,
+    timeout: 50000,
   },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

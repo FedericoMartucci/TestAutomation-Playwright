@@ -1,12 +1,16 @@
 class LoginPage {
     constructor(page) {
         this.page = page;
+        this.usernameInput = page.getByLabel('Username')
+        this.passwordInput = page.getByLabel('Password')
+        this.loginButton = page.getByRole('button', { name: 'Login' });
+        this.loginErrorLabel = page.getByLabel('Sorry, your username or password was incorrect. Please try again.')
     }
 
     async login(username, password) {
-        await this.page.fill('input[name="username"]', username);
-        await this.page.fill('input[name="password"]', password);
-        await this.page.click('button[type="submit"]');
+        await this.usernameInput.fill(username);
+        await this.passwordInput.fill(password);
+        await this.loginButton.click();
     }
 }
 
