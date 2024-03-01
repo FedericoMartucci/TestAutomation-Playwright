@@ -5,6 +5,7 @@ class LoginPage {
         this.passwordInput = page.getByLabel('Password')
         this.loginButton = page.getByRole('button', { name: 'Login' });
         this.loginErrorLabel = page.getByLabel('Sorry, your username or password was incorrect. Please try again.')
+        this.loader = page.locator('.edgZfu')
     }
 
     async login(username, password) {
