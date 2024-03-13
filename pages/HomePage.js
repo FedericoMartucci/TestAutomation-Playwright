@@ -11,9 +11,9 @@ class HomePage {
     this.tinchoProfile = page.getByText("@Tincho");
     this.followTinchoButton = page.locator('button[mode="follow"]').nth(0);
     this.showMoreLink = page.getByText("Show more");
-    this.uploadImage = page
-      .locator('input[type="file"]')
-      .setInputFiles("../data/testImage.jpeg");
+    // this.uploadImage = page
+    //   .locator('input[type="file"]')
+    //   .setInputFiles("../data/testImage.jpeg");
   }
   async tweet() {
     this.tweetModalButton.click();
