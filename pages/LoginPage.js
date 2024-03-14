@@ -4,7 +4,7 @@ class LoginPage {
         this.usernameInput = page.getByLabel('Username')
         this.passwordInput = page.getByLabel('Password')
         this.loginButton = page.getByRole('button', { name: 'Login' });
-        this.loginErrorLabel = page.getByLabel('Sorry, your username or password was incorrect. Please try again.')
+        this.loginErrorLabel = page.getByText('Sorry, your username or password was incorrect. Please try again.')
         this.loader = page.locator('.edgZfu')
     }
 

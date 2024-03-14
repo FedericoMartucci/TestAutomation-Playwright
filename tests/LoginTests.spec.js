@@ -17,6 +17,8 @@ test("The user cannot log in using an incorrect password.", async ({
 }) => {
   const loginPage = new LoginPage(page);
   await loginPage.login("federicoMartucci03", "Password12.");
-
   await expect(loginPage.loader).toBeVisible();
+  await page.waitForTimeout(1000);
+  await expect(loginPage.loginErrorLabel).toBeVisible();
+
 });
