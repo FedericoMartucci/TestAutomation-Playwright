@@ -8,9 +8,11 @@ class HomePage {
       .nth(1);
     this.tweetTextArea = page.getByPlaceholder("What's happening?");
     this.tweetText = page.getByText("Example tweet").first();
-    this.tinchoProfile = page.getByText("@Tincho");
+    this.tinchoProfile = page.getByText("Tincho").first();
+    this.tinchoUser = page.getByText("@Tincho");
     this.followTinchoButton = page.locator('button[mode="follow"]').nth(0);
     this.showMoreLink = page.getByText("Show more");
+    this.messageButton = page.getByText("Message");
     // this.uploadImage = page
     //   .locator('input[type="file"]')
     //   .setInputFiles("../data/testImage.jpeg");
@@ -25,16 +27,23 @@ class HomePage {
     this.tweetTextArea.fill(message);
   }
 
-//   async tweetImage() {
-//     await this.uploadImage;
-//   }
+  //   async tweetImage() {
+  //     await this.uploadImage;
+  //   }
 
   async followTincho() {
     this.followTinchoButton.click();
   }
 
+  async goTinchoProfile() {
+    this.tinchoProfile.click();
+  }
+
   async clickShowMore() {
     this.showMoreLink.click();
+  }
+  async clickMessages() {
+    this.messageButton.click();
   }
 }
 

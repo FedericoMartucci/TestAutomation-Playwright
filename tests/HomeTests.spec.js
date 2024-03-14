@@ -26,7 +26,7 @@ test("User can follow other users from home page", async ({ page }) => {
   await page.waitForTimeout(3000);
   await homePage.followTincho();
   await page.waitForTimeout(4000);
-  await expect(homePage.tinchoProfile).not.toBeVisible();
+  await expect(homePage.tinchoUser).not.toBeVisible();
   await page.waitForTimeout(2000);
   await page.goto(
     "https://frontend-training-taupe.vercel.app/profile?user=6bef2a19-35b3-496c-b2ed-065ba1c6162b"
