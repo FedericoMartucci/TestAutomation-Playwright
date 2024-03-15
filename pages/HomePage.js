@@ -28,6 +28,8 @@ class HomePage {
     this.switchToEnglishButton = page.getByText("Cambiar a Ingles");
     this.modalLogoutButton = page.getByRole("button", {name: this.english ? "Log out" : "Cerrar sesion"});
     this.retweetButton = page.locator('button img[alt="retweet-icon"]').first();
+    this.likeButton = page.locator('button img[alt="like-icon"]').first();
+    this.likeCounter = page.locator('div:has(> button img[alt="like-icon"]) label').nth(1);
     this.retweetCounter = page.locator(
       'div:has(> button img[alt="retweet-icon"]) label'
     ).nth(1);
@@ -35,6 +37,12 @@ class HomePage {
     //   .locator('input[type="file"]')
     //   .setInputFiles("../data/testImage.jpeg");
     this.whoToFollowContainer = page.locator("div", {has: page.locator('text="Who to follow"')})
+
+    this.commentButton = page.locator('button img[alt="chat-icon"]').first()
+    this.commentInput = page.getByPlaceholder('Tweet your reply')
+    this.commentTweetButton = page.getByRole('main').getByRole('button', { name: 'Tweet', exact: true })
+    this.closeCommentButton = page.locator('button > img[src="/static/media/close-icon2.7db6681104dbd5b77529a52535e12015.svg"]')
+
   }
 
   // async tweet() {
@@ -128,6 +136,28 @@ class HomePage {
 
   async cancelRetweet() {
     await this.retweetButton.click();
+  }
+
+  async likeTweet() {
+    const prevLikes = parseInt(await this.likeCounter.innerText())
+    await this.likeButton.click()
+    // this should be unnecesary
+    // await this.page.waitForTimeout(3000)
+    expect(await this.likeCounter.innerText()).toBe(String(prevLikes + 1));
+  }
+
+  async commentOnTweet(commentText) {
+    await this.commentButton.click()
+    await this.commentInput.fill(commentText)
+    await this.commentTweetButton.click()
+
+    // how to evade this
+    await this.page.waitForTimeout(2000)
+
+    await this.closeCommentButton.click()
+    await this.commentButton.click()
+    const comment = this.page.getByText(commentText)
+    await expect(await comment).toBeVisible()
   }
 }
 

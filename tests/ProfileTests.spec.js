@@ -40,4 +40,16 @@ describe('profile page tests', () => {
     //await page.waitForTimeout(2000);
     //expect(profilePage.followButton).toBeVisible();
   });
+
+  test('User can edit their profile', async ({ page }) => {
+    const profilePage = new ProfilePage(page);
+    await profilePage.goto()
+    await profilePage.edit('new description')
+  })
+
+  test('User can delete their profile', async ({ page }) => {
+    const profilePage = new ProfilePage(page);
+    await profilePage.goto()
+    await profilePage.delete()
+  })
 })

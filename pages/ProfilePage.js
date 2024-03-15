@@ -11,6 +11,10 @@ class ProfilePage {
     this.userId = userId;
     this.unfollowButton = page.getByText("Unfollow");
     this.followButton = page.getByText("Follow");
+    this.editButton = page.getByText("Edit profile");
+    this.saveChangesButton = page.getByText("Save changes");
+    this.editDescriptionTextbox = page.getByRole('textbox');
+    this.deleteButton = page.getByRole('button', { name: 'Delete' })
   }
 
   async goto() {
@@ -25,6 +29,18 @@ class ProfilePage {
   async unfollowUser() {
     await this.unfollowButton.click();
     await expect(await this.followButton).toBeVisible()
+  }
+
+  async edit(description) {
+    await this.editButton.click()
+    await this.editDescriptionTextbox.fill(description)
+    await this.saveChangesButton.click()
+    await expect(await this.editDescriptionTextbox).toContainText(description)
+  }
+
+  async delete() {
+    await expect(await this.deleteButton).toBeVisible()
+    await expect(await this.deleteButton).not.toBeDisabled()
   }
 
   get url() {

@@ -67,11 +67,24 @@ describe('home page tests', () => {
     expect(await homePage.retweetCounter.innerText()).toBe('0');
   });
 
-  // test.skip("User can like a tweet", async ({ page }) => {
-  //   const homePage = new HomePage(page);
-//
-  // })
+  test("User can like a tweet", async ({page}) => {
+    const homePage = new HomePage(page);
 
+    await homePage.tweetMessage(randomUUID());
+
+
+    await homePage.likeTweet()
+
+  })
+
+  test("User can comment a tweet", async ({page}) => {
+    const homePage = new HomePage(page);
+    const description = randomUUID()
+    const commentText = randomUUID()
+
+    await homePage.tweetMessage(description);
+    await homePage.commentOnTweet(commentText)
+  })
 })
 
 
